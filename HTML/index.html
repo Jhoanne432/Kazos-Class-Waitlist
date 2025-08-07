@@ -29,12 +29,23 @@
 <!-- Hero Section -->
 <section class="hero">
     <div class="container">
+
         <div class="hero-content">
             <div class="hero-text">
                 <h1>From Sketch to Pro – <span class="highlight">Master Aesthetic Anime Illustration from Scratch</span></h1>
                 <p class="hero-subtitle">Bring Your Anime Aesthetic to Life—One Stroke at a Time!</p>
                 <p class="hero-description">Discover the secrets to creating dreamy, pastel anime art that captures hearts and imagination. Whether you're a beginner or looking to refine your style, this is your journey to artistic freedom.</p>
                 <a href="#pricing" class="btn-primary">Enroll Now</a>
+                <!-- Countdown Container -->
+                <div class="countdown-container">
+                    <div class="countdown-timer">
+                        <span id="days">00</span>d :
+                        <span id="hours">00</span>h :
+                        <span id="minutes">00</span>m :
+                        <span id="seconds">00</span>s
+                        <span class="countdown-label">left to register!</span>
+                    </div>
+                </div>
                 <div class="stats">
                     <div class="avatars">
                         <div class="avatar">A</div>
@@ -491,6 +502,7 @@
                         <div class="faq-toggle">+</div>
                     </div>
                     <div class="faq-answer">
+                        <br>
                         <p>Absolutely! The course is designed to take you from fundamental skills to advanced techniques. We start with the basics and gradually build up to more complex concepts, making it perfect for artists at all levels.</p>
                     </div>
                 </div>
@@ -500,6 +512,7 @@
                         <div class="faq-toggle">+</div>
                     </div>
                     <div class="faq-answer">
+                        <br>
                         <p>The course primarily uses Procreate, but the techniques can be applied to any digital art software like Photoshop, Clip Studio Paint, or Krita. The included brushes are specifically for Procreate.</p>
                     </div>
                 </div>
@@ -509,6 +522,7 @@
                         <div class="faq-toggle">+</div>
                     </div>
                     <div class="faq-answer">
+                        <br>
                         <p>You'll have lifetime access to all course materials, including any future updates we make to the content.</p>
                     </div>
                 </div>
@@ -518,7 +532,8 @@
                         <div class="faq-toggle">+</div>
                     </div>
                     <div class="faq-answer">
-                        <p>We offer a 30-day money-back guarantee. If you're not satisfied with the course for any reason, just contact us within 30 days for a full refund.</p>
+                        <br>
+                        <p>We offer a 14-day money-back guarantee. If you're not satisfied with the course for any reason, just contact us within 14 days for a full refund.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -527,6 +542,7 @@
                         <div class="faq-toggle">+</div>
                     </div>
                     <div class="faq-answer">
+                        <br>
                         <p>Yes! While we teach specific techniques, the course is designed to help you understand the fundamentals so you can develop your unique artistic voice. Many students find their style naturally emerges as they gain confidence in their skills.</p>
                     </div>
                 </div>
@@ -536,6 +552,7 @@
                         <div class="faq-toggle">+</div>
                     </div>
                     <div class="faq-answer">
+                        <br>
                         <p>The course includes over 20 hours of content, but we recommend setting aside 3-5 hours per week to practice and implement what you learn. However, you can go at your own pace since you have lifetime access.</p>
                     </div>
                 </div>
@@ -594,6 +611,43 @@
                 }
             });
         });
+
+    // FAQ toggle functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', function () {
+            const faqItem = this.parentElement;
+            faqItem.classList.toggle('active');
+        });
+    });
+
+
+    // Set your registration deadline here (YYYY-MM-DDTHH:MM:SS)
+    const registrationDeadline = new Date("2025-08-31T23:59:59").getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = registrationDeadline - now;
+
+        if (distance < 0) {
+            document.querySelector('.countdown-timer').innerHTML = "Registration closed!";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = String(days).padStart(2, '0');
+        document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+        document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+        document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+
     </script>
 </body>
 </html>

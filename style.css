@@ -1753,3 +1753,99 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0; top: 0; right: 0; bottom: 0;
+            background: rgba(45, 45, 45, 0.65);
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 18px;
+            padding: 40px 30px 30px 30px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(255, 136, 173, 0.18);
+            position: relative;
+            text-align: center;
+            animation: popIn 0.3s;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.85); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 10px;
+            color: #FF88AD;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .modal-content p {
+            margin-bottom: 20px;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        #register-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #register-form input[type="text"],
+        #register-form input[type="email"] {
+            padding: 12px;
+            border: 1px solid #FFB6C1;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        #register-form input:focus {
+            border-color: #FF88AD;
+        }
+
+        #register-form .btn-primary {
+            width: 100%;
+            padding: 12px 0;
+            font-size: 1.1rem;
+            border-radius: 8px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            font-size: 1.7rem;
+            color: #FF88AD;
+            cursor: pointer;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: #ff5c97;
+        }

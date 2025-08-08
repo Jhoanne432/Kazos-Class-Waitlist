@@ -462,7 +462,7 @@
                             <div class="special-price">Special Price: $197</div>
                         </div>
                         <div style="margin-top: 30px;">
-                            <a href="#" class="btn-primary">Start Now</a>
+                            <a href="#" class="btn-primary payment-btn">Start Now</a>
                         </div>
                     </div>
                     <div class="pricing-card">
@@ -483,7 +483,7 @@
                             <div class="special-price">Special Price: $197</div>
                         </div>
                         <div style="margin-top: 30px;">
-                            <a href="#" class="btn-primary">Start Now</a>
+                            <a href="#" class="btn-primary payment-btn">Start Now</a>
                         </div>
                     </div>
                 </div>
@@ -576,6 +576,22 @@
     </div>
 </footer>
 
+<!-- Register Modal -->
+<div id="register-modal" class="modal-overlay">
+  <div class="modal-content">
+    <span class="modal-close" id="close-modal">&times;</span>
+    <img src="images/logo.png" alt="Register Banner" class="modal-image" />
+    <h2>Join the Class Waitlist!</h2>
+    <div id="modal-price" style="font-size:1.2rem;color:#FF88AD;font-weight:600;margin-bottom:10px;"></div>
+    <p>Enter your details below to reserve your spot.</p>
+    <form id="register-form">
+      <input type="text" id="reg-name" name="name" placeholder="Your Name" required />
+      <input type="email" id="reg-email" name="email" placeholder="Your Email" required />
+      <button type="submit" class="btn-primary">Enroll</button>
+    </form>
+  </div>
+</div>
+
     <script>
         // Simple scroll animation
         const observerOptions = {
@@ -649,7 +665,41 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
+    // Only open modal on .payment-btn click
+    document.querySelectorAll('.payment-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Find the closest pricing card and get its price and title
+        const card = btn.closest('.pricing-card');
+        const price = card.querySelector('.pricing-amount').textContent.trim();
+        const title = card.querySelector('.pricing-title').textContent.trim();
+        // Set the modal price
+        document.getElementById('modal-price').textContent = `${title}: ${price}`;
+        document.getElementById('register-modal').classList.add('active');
+        });
+    });
+
+    // Close modal
+    document.getElementById('close-modal').onclick = function() {
+        document.getElementById('register-modal').classList.remove('active');
+    };
+
+    // Optional: Close modal when clicking outside modal-content
+    document.getElementById('register-modal').onclick = function(e) {
+        if (e.target === this) this.classList.remove('active');
+    };
+
+    // Optional: Handle form submit (replace with your logic)
+    document.getElementById('register-form').onsubmit = function(e) {
+        e.preventDefault();
+        alert('Thank you for registering!');
+        document.getElementById('register-modal').classList.remove('active');
+        this.reset();
+    };
 
     </script>
+
+
+    
 </body>
 </html>
